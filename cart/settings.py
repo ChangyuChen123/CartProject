@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,8 +43,8 @@ INSTALLED_APPS = [
 ]
 
 CAPTCHA_NOISE_FUNCTIONS = (
-     'captcha.helpers.noise_dots', #點
-     'captcha.helpers.noise_arcs', #線
+    'captcha.helpers.noise_dots',  # 點
+    'captcha.helpers.noise_arcs',  # 線
 )
 
 MIDDLEWARE = [
@@ -126,7 +127,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    os.path.join(BASE_DIR, 'static').replace('\\', '/'),
+    os.path.join(BASE_DIR,).replace('\\', '/'),
+    #BASE_DIR / 'static',
 ]
 
 # Default primary key field type
